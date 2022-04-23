@@ -43,6 +43,14 @@ specify the name of your output CSV file (default: `otbeat.csv`):
 python otbeat_extract.py -o my_csv.csv /path/to/file*.eml
 ```
 
+To operate on an `mbox` single-file mailbox, use the `extract_mbox.py` script. This script
+has the same `-o/--out-file` flag as `otbeat_extract.py`, but instead of operating on a 
+list of `.eml` files, operates on an `mbox` mailbox.
+
+```bash
+python extract_mbox.py -o out_file.csv /path/to/mbox_file
+```
+
 # Background
 
 This script differs from other parsers in that it runs entirely offline. The distinct 
