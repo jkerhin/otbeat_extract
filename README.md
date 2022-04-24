@@ -71,3 +71,18 @@ written a Python extractor as well: https://github.com/JimmyVanHout/otf_data
 That parser also uses BeautifulSoup to extract fields, but the approach is _very_ different,
 and the package uses IMAP to connect to a mail server and pull messges, instead of requiring 
 the user to pull messages manually.
+
+# Developing
+
+If you're doing further development on this tool, use the `environment-dev.txt` when setting up
+your virtualenv rather than the default `requirements.txt`. The big change that the development 
+environment brings is `pre-commit`. Set up your development environment like so:
+
+```bash
+python3 -m venv venv
+python3 -m pip install -r requirements-dev.txt
+pre-commit install
+# This should *not* find any errors, but may take a minute or so to get
+# pre-commit set up for the first time
+pre-commit run
+```

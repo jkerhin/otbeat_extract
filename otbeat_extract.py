@@ -11,7 +11,7 @@ from email import policy
 from email.parser import BytesParser
 from pathlib import Path
 
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 
 def get_email_soup(email_pth: Path) -> BeautifulSoup:
@@ -39,7 +39,7 @@ def extract_peak_hr(peak_hr_root: Tag) -> str:
 
 def extract_data(soup: BeautifulSoup) -> dict:
     """Identify the report format, and call the correct extract function
-    
+
     TODO: I only have one report prior to 2022. If there are additional formats
         that cannot be parsed with the current code, please let me know
 
@@ -52,7 +52,7 @@ def extract_data(soup: BeautifulSoup) -> dict:
 
 def extract_current(soup: BeautifulSoup) -> dict:
     """Extract metrics from a current (April 2022) OTbeatReport email
-    
+
     TODO: Document when this format began
 
     """
