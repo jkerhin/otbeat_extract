@@ -82,6 +82,9 @@ def extract_current(soup: BeautifulSoup) -> dict:
     extracted_data["time"] = extracted_data["time"].replace(
         "\u200c", ""
     )  # Remove zero width non-joiner
+    # Extra spaces starting c. September 2022...
+    for key in extracted_data:
+        extracted_data[key] = extracted_data[key].strip()
     return extracted_data
 
 
@@ -160,10 +163,12 @@ def main():
     # Implementing in Python because I don't feel like fighting with PowerShell
     eml_pths = []
     for arg in args.eml_files:
+        pth = Path(arg)
         if "*" in arg:
-            eml_pths.extend(Path().glob(arg))
+            # Is this... good? It won't work if there's a glob in the directory path...
+            eml_pths.extend(pth.parent.glob(pth.name))
         else:
-            eml_pths.append(Path(arg))
+            eml_pths.append(pth)
 
     parsed_metrics = [extract_data(get_email_soup(pth)) for pth in eml_pths]
     sorted_metrics = sorted(parsed_metrics, key=get_datetime)
